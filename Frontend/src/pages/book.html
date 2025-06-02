@@ -186,6 +186,21 @@
                 <p
                   class="text-[#1b130d] text-base font-medium leading-normal pb-2"
                 >
+                  Parent's Email Address
+                </p>
+                <input
+                  placeholder="Enter parent's email address"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                  type="email"
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p
+                  class="text-[#1b130d] text-base font-medium leading-normal pb-2"
+                >
                   Duration
                 </p>
                 <div class="flex items-center gap-4">
@@ -203,12 +218,23 @@
                 >
                   Date of Booking
                 </p>
-                <input
-                  placeholder="Select date"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                  type="date"
-                />
+                <div class="flex flex-wrap items-end gap-4">
+                  <input
+                    placeholder="Select date"
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
+                    value=""
+                    type="date"
+                    id="start-date"
+                  />
+
+                  <input
+                    placeholder="Select date"
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
+                    value=""
+                    type="date"
+                    id="end-date"
+                  />
+                </div>
               </label>
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
@@ -244,15 +270,13 @@
                   Program Selection
                 </p>
                 <select
-                id="program-selection"
+                  id="program-selection"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 bg-[image:--select-button-svg] placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                 >
                   <option value="0">Select program</option>
                   <option value="200">Infant Care (200₹ base fee)</option>
                   <option value="150">Toddler Program(150₹ base fee)</option>
-                  <option value="100">
-                    Preschool Program(100₹ base fee)
-                  </option>
+                  <option value="100">Preschool Program(100₹ base fee)</option>
                 </select>
               </label>
             </div>
@@ -271,8 +295,8 @@
               class="text-[#1b130d] text-base font-normal leading-normal pb-3 pt-1 px-4"
             >
               By submitting this enrollment form, you agree to abide by the
-              terms and conditions of Little Sprouts Daycare. Please review our
-              policies regarding attendance, fees, and health guidelines
+              terms and conditions of Playful-Horizons Daycare. Please review
+              our policies regarding attendance, fees, and health guidelines
               available on our website.
             </p>
             <h2
@@ -283,15 +307,21 @@
             <p
               class="text-[#1b130d] text-base font-normal leading-normal pb-3 pt-1 px-4"
             >
-              Little Sprouts Daycare maintains a safe and nurturing environment
-              for all children. We expect all parents and guardians to adhere to
-              our code of conduct, which includes respecting staff, other
-              children, and the facility. Detailed rules and guidelines are
-              available in our parent handbook.
+              Playful-Horizons Daycare maintains a safe and nurturing
+              environment for all children. We expect all parents and guardians
+              to adhere to our code of conduct, which includes respecting staff,
+              other children, and the facility. Detailed rules and guidelines
+              are available in our parent handbook.
+            </p>
+            <p
+              class="text-[#1b130d] text-base font-bold leading-normal pb-3 pt-1 px-4"
+            >
+              A copy of form will be sent to your email address with a pdf
+              attach. Please bring a print of that pdf on the day of enrollment.
             </p>
             <div class="flex px-4 py-3 justify-end">
               <button
-              id="submit-button"
+                id="submit-button"
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#ef8142] text-[#1b130d] text-sm font-bold leading-normal tracking-[0.015em]"
               >
                 <span class="truncate">Submit</span>
