@@ -186,6 +186,21 @@
                 <p
                   class="text-[#1b130d] text-base font-medium leading-normal pb-2"
                 >
+                  Duration
+                </p>
+                <div class="flex items-center gap-4">
+                  <input type="checkbox" id="one-day" />
+                  <label for="one-day">One Day</label>
+                  <input type="checkbox" id="whole-semester" />
+                  <label for="whole-semester">Whole Semester (90 Days)</label>
+                </div>
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p
+                  class="text-[#1b130d] text-base font-medium leading-normal pb-2"
+                >
                   Date of Booking
                 </p>
                 <input
@@ -209,12 +224,14 @@
                     class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                     value=""
                     type="time"
+                    id="start-time"
                   />
                   <input
                     placeholder="Select End Time"
                     class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                     value=""
                     type="time"
+                    id="end-time"
                   />
                 </div>
               </label>
@@ -227,19 +244,23 @@
                   Program Selection
                 </p>
                 <select
+                id="program-selection"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 bg-[image:--select-button-svg] placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                 >
-                  <option value="one">Select program</option>
-                  <option value="two">Infant Care</option>
-                  <option value="three">Toddler Program</option>
-                  <option value="four">Preschool Program</option>
+                  <option value="0">Select program</option>
+                  <option value="200">Infant Care (200₹ base fee)</option>
+                  <option value="150">Toddler Program(150₹ base fee)</option>
+                  <option value="100">
+                    Preschool Program(100₹ base fee)
+                  </option>
                 </select>
               </label>
             </div>
             <p
+              id="applicable-fee"
               class="text-[#1b130d] text-base font-normal leading-normal pb-3 pt-1 px-4"
             >
-              Applicable Fee: $500
+              Applicable Fee: ₹0
             </p>
             <h2
               class="text-[#1b130d] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5"
@@ -270,6 +291,7 @@
             </p>
             <div class="flex px-4 py-3 justify-end">
               <button
+              id="submit-button"
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#ef8142] text-[#1b130d] text-sm font-bold leading-normal tracking-[0.015em]"
               >
                 <span class="truncate">Submit</span>
@@ -390,5 +412,6 @@
         </footer>
       </div>
     </div>
+    <script src="../scripts/scripts.js"></script>
   </body>
 </html>
