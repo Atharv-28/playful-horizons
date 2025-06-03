@@ -60,4 +60,44 @@ document.addEventListener("DOMContentLoaded", () => {
     programSelection.addEventListener("change", calculateFee);
     startTime.addEventListener("change", calculateFee);
     endTime.addEventListener("change", calculateFee);
+
+    document.getElementById("submit-button").addEventListener("click", async (event) => {
+        event.preventDefault();
+        const userData = {
+            childName: document.querySelector("input[placeholder=\"Enter child's name\"]").value,
+            childAge: document.querySelector("input[placeholder=\"Enter child's age\"]").value,
+            childGender: document.querySelector("select").value,
+            parent1Name: document.querySelector("input[placeholder=\"Enter parent 1 name\"]").value,
+            parent2Name: document.querySelector("input[placeholder=\"Enter parent 2 name\"]").value,
+            parent1Contact: document.querySelector("input[placeholder=\"Enter parent 1 contact number\"]").value,
+            parent2Contact: document.querySelector("input[placeholder=\"Enter parent 2 contact number\"]").value,
+            parentEmail: document.querySelector("input[type=\"email\"]").value,
+            program: document.getElementById("program-selection").value,
+            duration: document.getElementById("one-day").checked ? "One Day" : "Whole Semester",
+            startDate: document.getElementById("start-date").value,
+            endDate: document.getElementById("end-date").value,
+            startTime: document.getElementById("start-time").value,
+            endTime: document.getElementById("end-time").value,
+        };
+        try {
+            /*const response = await fetch("https://your-backend-url/api/send-pdf", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+            });
+
+            if (response.ok) {
+                alert("PDF generated and sent to your email successfully!");
+            } else {
+                alert("Failed to send email. Please try again.");
+            }
+                */
+               console.log("User Data:", userData);
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+        }
+    });
 });
