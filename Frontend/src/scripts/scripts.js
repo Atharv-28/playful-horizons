@@ -64,6 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("submit-button").addEventListener("click", async (event) => {
         event.preventDefault();
+
+        const loader = document.getElementById("loader");
+        loader.style.display = "block";
+
         const userData = {
             childName: document.querySelector("input[placeholder=\"Enter child's name\"]").value,
             childAge: document.querySelector("input[placeholder=\"Enter child's age\"]").value,
@@ -79,9 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
             endDate: document.getElementById("end-date").value,
             startTime: document.getElementById("start-time").value,
             endTime: document.getElementById("end-time").value,
-            fee: `₹${totalFee}`,
+            fee: `${totalFee}`,
         };
         try {
+            console.log(totalFee)
             const response = await fetch("http://localhost:3000/api/send-pdf", {
                 method: "POST",
                 headers: {
@@ -100,5 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error:", error);
             alert("An error occurred. Please try again.");
         }
+        finally {
+        loader.style.display = "none";
+    }
     });
 });

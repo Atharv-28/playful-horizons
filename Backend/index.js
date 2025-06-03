@@ -109,7 +109,7 @@ We look forward to an enriching journey together!`,
     { field: "End Date", value: userData.endDate },
     { field: "Start Time", value: userData.startTime },
     { field: "End Time", value: userData.endTime },
-    { field: "Total Fee", value: userData.fee },
+    { field: "Total Fee", value: `₹${userData.fee}` },
   ];
 
   formData.forEach((row) => {
