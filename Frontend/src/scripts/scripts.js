@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hourlyRate = 50; // Example hourly rate
     const semesterDays = 50; // Example number of days in a semester
 
+    let totalFee = 0;
     // Autofill start and end date/time for semester
     function autofillSemesterDetails() {
         const semesterStartDate = "2025-06-15"; // Example start date
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let durationHours = start && end ? (end - start) / (1000 * 60 * 60) : 0;
         let timeSlotFee = durationHours * hourlyRate;
 
-        let totalFee = programFee + timeSlotFee;
+        totalFee = programFee + timeSlotFee;
 
         if (oneDayCheckbox.checked) {
             applicableFeeDisplay.textContent = `Applicable Fee: ₹${totalFee.toFixed(2)}`;
@@ -78,10 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
             endDate: document.getElementById("end-date").value,
             startTime: document.getElementById("start-time").value,
             endTime: document.getElementById("end-time").value,
-            fee: `₹${totalFee.toFixed(2)}`,
+            fee: `₹${totalFee}`,
         };
         try {
-            const response = await fetch("https://your-backend-url/api/send-pdf", {
+            const response = await fetch("http://localhost:3000/api/send-pdf", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
