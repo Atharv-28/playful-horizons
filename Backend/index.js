@@ -22,7 +22,7 @@ app.post("/api/send-pdf", async (req, res) => {
             service: "gmail",
             auth: {
                 user: "advaityayt@gmail.com",
-                pass: "exge jbsy zwnj hrot",
+                pass: "exge jbsy zwnj hrot", // Consider using environment variables
             },
         });
 
@@ -55,16 +55,27 @@ app.post("/api/send-pdf", async (req, res) => {
     }
 
     // Add title
+    pdfDoc.moveDown(2);
     pdfDoc.fontSize(18).text("Enrollment Form - Playful Horizons", { align: "center" });
-    pdfDoc.moveDown();
+    pdfDoc.moveDown(2);
 
-    // Add table headers with border
-    pdfDoc.fontSize(12).text("Field", 100, pdfDoc.y, { continued: true });
-    pdfDoc.text("Value", 300);
-    pdfDoc.moveDown();
-    pdfDoc.moveTo(90, pdfDoc.y - 10).lineTo(500, pdfDoc.y - 10).stroke(); // Draw border below headers
+    // Table positions
+    const tableStartX = 90;
+    const tableEndX = 500;
+    const fieldColX = tableStartX;
+    const valueColX = 300;
+    const lineHeight = 20;
 
-    // Add table rows with borders
+    // Table header
+    const headerY = pdfDoc.y;
+    pdfDoc.fontSize(12).font("Helvetica-Bold");
+    pdfDoc.text("Field", fieldColX, headerY);
+    pdfDoc.text("Value", valueColX, headerY);
+    pdfDoc.moveDown();
+    pdfDoc.font("Helvetica");
+    pdfDoc.rect(tableStartX, headerY - 2, tableEndX - tableStartX, lineHeight).stroke();
+
+    // Table data
     const formData = [
         { field: "Child's Name", value: userData.childName },
         { field: "Child's Age", value: userData.childAge },
@@ -83,21 +94,23 @@ app.post("/api/send-pdf", async (req, res) => {
     ];
 
     formData.forEach((row) => {
-        pdfDoc.text(row.field, 100, pdfDoc.y, { continued: true });
-        pdfDoc.text(row.value || "N/A", 300);
+        const y = pdfDoc.y;
+        pdfDoc.text(row.field, fieldColX, y);
+        pdfDoc.text(row.value || "N/A", valueColX, y);
+        pdfDoc.rect(tableStartX, y - 2, tableEndX - tableStartX, lineHeight).stroke();
         pdfDoc.moveDown();
-        pdfDoc.moveTo(90, pdfDoc.y - 10).lineTo(500, pdfDoc.y - 10).stroke(); // Draw border below each row
     });
 
-    pdfDoc.moveDown();
+    pdfDoc.moveDown(2);
 
-    // Add statement at the end
+    // Footer note
     pdfDoc.fontSize(12).text("Note: Must have a printout at the time of enrollment.", { align: "center" });
     pdfDoc.moveDown(2);
 
-    // Add placeholders for signatures
-    pdfDoc.fontSize(12).text("Parent's Signature: ____________________", 350, pdfDoc.y);
-    pdfDoc.text("Daycare Center Signature: ____________________", 50, pdfDoc.y);
+    // Signatures
+    const signatureY = pdfDoc.y;
+    pdfDoc.fontSize(12).text("Parent's Signature: ____________________", valueColX, signatureY);
+    pdfDoc.text("Daycare Center Signature: ____________________", fieldColX, signatureY);
 
     pdfDoc.end();
 });
