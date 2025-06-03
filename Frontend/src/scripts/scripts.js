@@ -78,9 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
             endDate: document.getElementById("end-date").value,
             startTime: document.getElementById("start-time").value,
             endTime: document.getElementById("end-time").value,
+            fee: `₹${totalFee.toFixed(2)}`,
         };
         try {
-            /*const response = await fetch("https://your-backend-url/api/send-pdf", {
+            const response = await fetch("https://your-backend-url/api/send-pdf", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -93,8 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 alert("Failed to send email. Please try again.");
             }
-                */
-               console.log("User Data:", userData);
+            //    console.log("User Data:", userData);
         } catch (error) {
             console.error("Error:", error);
             alert("An error occurred. Please try again.");
