@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
+const fs = require("fs"); // For reading logo file
 
 const app = express();
 app.use(bodyParser.json());
@@ -47,16 +48,23 @@ app.post("/api/send-pdf", async (req, res) => {
         }
     });
 
+    // Add logo
+    const logoPath = "./logo.png"; // Replace with the actual path to your logo file
+    if (fs.existsSync(logoPath)) {
+        pdfDoc.image(logoPath, 50, 50, { width: 100 });
+    }
+
     // Add title
     pdfDoc.fontSize(18).text("Enrollment Form - Playful Horizons", { align: "center" });
     pdfDoc.moveDown();
 
-    // Add table headers
+    // Add table headers with border
     pdfDoc.fontSize(12).text("Field", 100, pdfDoc.y, { continued: true });
     pdfDoc.text("Value", 300);
     pdfDoc.moveDown();
+    pdfDoc.moveTo(90, pdfDoc.y - 10).lineTo(500, pdfDoc.y - 10).stroke(); // Draw border below headers
 
-    // Add table rows
+    // Add table rows with borders
     const formData = [
         { field: "Child's Name", value: userData.childName },
         { field: "Child's Age", value: userData.childAge },
@@ -78,7 +86,18 @@ app.post("/api/send-pdf", async (req, res) => {
         pdfDoc.text(row.field, 100, pdfDoc.y, { continued: true });
         pdfDoc.text(row.value || "N/A", 300);
         pdfDoc.moveDown();
+        pdfDoc.moveTo(90, pdfDoc.y - 10).lineTo(500, pdfDoc.y - 10).stroke(); // Draw border below each row
     });
+
+    pdfDoc.moveDown();
+
+    // Add statement at the end
+    pdfDoc.fontSize(12).text("Note: Must have a printout at the time of enrollment.", { align: "center" });
+    pdfDoc.moveDown(2);
+
+    // Add placeholders for signatures
+    pdfDoc.fontSize(12).text("Parent's Signature: ____________________", 350, pdfDoc.y);
+    pdfDoc.text("Daycare Center Signature: ____________________", 50, pdfDoc.y);
 
     pdfDoc.end();
 });
