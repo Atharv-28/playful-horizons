@@ -3,9 +3,11 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const fs = require("fs"); // For reading logo file
-
+const cors = require("cors");
 const app = express();
+
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post("/api/send-pdf", async (req, res) => {
   const userData = req.body;
