@@ -1,0 +1,16 @@
+{
+  "name": "playful",
+  "version": "1.0.0",
+  "description": "4th semister seminar-II project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "start-dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AtharvT",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
