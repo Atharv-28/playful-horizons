@@ -62,7 +62,7 @@ app.post("/api/send-pdf", async (req, res) => {
     // Table positions
     const tableStartX = 90;
     const tableEndX = 500;
-    const fieldColX = tableStartX;
+    const fieldColX = tableStartX+ 10;
     const valueColX = 300;
     const lineHeight = 20;
 
@@ -73,7 +73,7 @@ app.post("/api/send-pdf", async (req, res) => {
     pdfDoc.text("Value", valueColX, headerY);
     pdfDoc.moveDown();
     pdfDoc.font("Helvetica");
-    pdfDoc.rect(tableStartX, headerY - 2, tableEndX - tableStartX, lineHeight).stroke();
+    pdfDoc.rect(tableStartX, headerY - 5, tableEndX - tableStartX, lineHeight).stroke();
 
     // Table data
     const formData = [
@@ -97,7 +97,7 @@ app.post("/api/send-pdf", async (req, res) => {
         const y = pdfDoc.y;
         pdfDoc.text(row.field, fieldColX, y);
         pdfDoc.text(row.value || "N/A", valueColX, y);
-        pdfDoc.rect(tableStartX, y - 2, tableEndX - tableStartX, lineHeight).stroke();
+        pdfDoc.rect(tableStartX, y - 5, tableEndX - tableStartX, lineHeight).stroke();
         pdfDoc.moveDown();
     });
 
@@ -110,8 +110,9 @@ app.post("/api/send-pdf", async (req, res) => {
     // Signatures
     const signatureY = pdfDoc.y;
     pdfDoc.fontSize(12).text("Parent's Signature: ____________________", valueColX, signatureY);
+    pdfDoc.moveDown();
     pdfDoc.text("Daycare Center Signature: ____________________", fieldColX, signatureY);
-
+    
     pdfDoc.end();
 });
 
