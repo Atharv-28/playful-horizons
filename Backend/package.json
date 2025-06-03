@@ -13,6 +13,9 @@
   "dependencies": {
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
-    "nodemailer": "^7.0.3"
+    "fs": "^0.0.1-security",
+    "nodemailer": "^7.0.3",
+    "nodemon": "^3.1.10",
+    "pdfkit": "^0.17.1"
   }
 }
