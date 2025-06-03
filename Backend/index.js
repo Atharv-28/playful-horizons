@@ -49,31 +49,39 @@ app.post("/api/send-pdf", async (req, res) => {
     });
 
     // Add logo
-    const logoPath = "./logo.png"; // Replace with the actual path to your logo file
+    const logoPath = "./logo.png"; // Replace with actual path
     if (fs.existsSync(logoPath)) {
         pdfDoc.image(logoPath, 50, 50, { width: 100 });
     }
 
-    // Add title
+    // Title
     pdfDoc.moveDown(2);
     pdfDoc.fontSize(18).text("Enrollment Form - Playful Horizons", { align: "center" });
     pdfDoc.moveDown(2);
 
-    // Table positions
+    pdfDoc.fontSize(12).text(
+        "Note: Must have a printout at the time of enrollment.",
+        { align: "center" }
+    );
+
+    pdfDoc.moveDown(2);
+
+    // Table positioning
     const tableStartX = 90;
     const tableEndX = 500;
-    const fieldColX = tableStartX+ 10;
+    const fieldColX = tableStartX + 10;
     const valueColX = 300;
-    const lineHeight = 20;
 
-    // Table header
+    // Header
     const headerY = pdfDoc.y;
     pdfDoc.fontSize(12).font("Helvetica-Bold");
     pdfDoc.text("Field", fieldColX, headerY);
     pdfDoc.text("Value", valueColX, headerY);
+    pdfDoc.moveTo(tableStartX, headerY + 15).lineTo(tableEndX, headerY + 15).stroke();
     pdfDoc.moveDown();
     pdfDoc.font("Helvetica");
-    pdfDoc.rect(tableStartX, headerY - 5, tableEndX - tableStartX, lineHeight).stroke();
+
+
 
     // Table data
     const formData = [
@@ -97,22 +105,20 @@ app.post("/api/send-pdf", async (req, res) => {
         const y = pdfDoc.y;
         pdfDoc.text(row.field, fieldColX, y);
         pdfDoc.text(row.value || "N/A", valueColX, y);
-        pdfDoc.rect(tableStartX, y - 5, tableEndX - tableStartX, lineHeight).stroke();
+        pdfDoc.moveTo(tableStartX, y + 15).lineTo(tableEndX, y + 15).stroke();
         pdfDoc.moveDown();
     });
 
+    // Note - centered horizontally
+
     pdfDoc.moveDown(2);
 
-    // Footer note
-    pdfDoc.fontSize(12).text("Note: Must have a printout at the time of enrollment.", { align: "center" });
-    pdfDoc.moveDown(2);
-
-    // Signatures
-    const signatureY = pdfDoc.y;
-    pdfDoc.fontSize(12).text("Parent's Signature: ____________________", valueColX, signatureY);
+    // Signatures - left aligned, new lines
+    pdfDoc.fontSize(12);
+    pdfDoc.text("Parent's Signature: ____________________");
     pdfDoc.moveDown();
-    pdfDoc.text("Daycare Center Signature: ____________________", fieldColX, signatureY);
-    
+    pdfDoc.text("Authority's Signature: _________________");
+
     pdfDoc.end();
 });
 
