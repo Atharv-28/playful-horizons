@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         console.log("userData:", userData);
         try {
-            const response = await fetch("http://localhost:3000/api/send-pdf", {
+            const response = await fetch("https://playful-horizons.onrender.com/api/send-pdf", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
