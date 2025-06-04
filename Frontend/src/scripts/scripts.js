@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             endDate: document.getElementById("end-date").value,
             startTime: document.getElementById("start-time").value,
             endTime: document.getElementById("end-time").value,
-            fee: `{totalFee}`,
+            fee: `${totalFee}`,
         };
         try {
             console.log(totalFee)
