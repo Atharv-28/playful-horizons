@@ -83,11 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
             endDate: document.getElementById("end-date").value,
             startTime: document.getElementById("start-time").value,
             endTime: document.getElementById("end-time").value,
-            fee: `${totalFee}`,
+            fee: `{totalFee}`,
         };
         try {
             console.log(totalFee)
-            const response = await fetch("http://localhost:3000/api/send-pdf", {
+            const response = await fetch("https://playful-horizons.onrender.com/api/send-pdf", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
