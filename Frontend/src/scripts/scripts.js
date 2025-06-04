@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function calculateFee() {
-        let programFee = parseInt(programSelection.value) || 0;
+        const selectedOption = programSelection.options[programSelection.selectedIndex];
+        const programFee = parseInt(selectedOption.value) || 0;
+        const programName = selectedOption.getAttribute("data-name");
+
         let start = startTime.value ? new Date(`1970-01-01T${startTime.value}:00`) : null;
         let end = endTime.value ? new Date(`1970-01-01T${endTime.value}:00`) : null;
         let durationHours = start && end ? (end - start) / (1000 * 60 * 60) : 0;
@@ -39,7 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
             applicableFeeDisplay.textContent = `Applicable Fee: ₹${totalFee.toFixed(2)}`;
         } else {
             applicableFeeDisplay.textContent = `Applicable Fee: ₹${totalFee.toFixed(2)}`;
-        }        
+        }
+
+        // Store program name for later use
+        programSelection.dataset.selectedName = programName;
     }
 
     // Ensure only one checkbox is selectable
@@ -77,17 +83,17 @@ document.addEventListener("DOMContentLoaded", () => {
             parent1Contact: document.querySelector("input[placeholder=\"Enter parent 1 contact number\"]").value,
             parent2Contact: document.querySelector("input[placeholder=\"Enter parent 2 contact number\"]").value,
             parentEmail: document.querySelector("input[type=\"email\"]").value,
-            program: document.getElementById("program-selection").value,
+            program: programSelection.dataset.selectedName, // Get program name
             duration: document.getElementById("one-day").checked ? "One Day" : "Whole Semester",
             startDate: document.getElementById("start-date").value,
             endDate: document.getElementById("end-date").value,
             startTime: document.getElementById("start-time").value,
             endTime: document.getElementById("end-time").value,
-            fee: `${totalFee}`,
+            fee: `₹${totalFee}`,
         };
+        console.log("userData:", userData);
         try {
-            console.log(totalFee)
-            const response = await fetch("https://playful-horizons.onrender.com/api/send-pdf", {
+            const response = await fetch("http://localhost:3000/api/send-pdf", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -100,13 +106,11 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 alert("Failed to send email. Please try again.");
             }
-            //    console.log("User Data:", userData);
         } catch (error) {
             console.error("Error:", error);
             alert("An error occurred. Please try again.");
+        } finally {
+            loader.style.display = "none";
         }
-        finally {
-        loader.style.display = "none";
-    }
     });
 });

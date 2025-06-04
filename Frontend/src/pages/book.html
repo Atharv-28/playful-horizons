@@ -118,6 +118,7 @@
                   placeholder="Enter child's age"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                   value=""
+                  type="number"
                 />
               </label>
             </div>
@@ -148,6 +149,7 @@
                   placeholder="Enter parent 1 name"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                   value=""
+                  type="text"
                 />
               </label>
             </div>
@@ -162,6 +164,7 @@
                   placeholder="Enter parent 2 name"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                   value=""
+                  type="text"
                 />
               </label>
             </div>
@@ -176,6 +179,7 @@
                   placeholder="Enter parent 1 contact number"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                   value=""
+                  type="number"
                 />
               </label>
             </div>
@@ -190,6 +194,7 @@
                   placeholder="Enter parent 2 contact number"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                   value=""
+                  type="number"
                 />
               </label>
             </div>
@@ -285,10 +290,10 @@
                   id="program-selection"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 bg-[image:--select-button-svg] placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                 >
-                  <option value="0">Select program</option>
-                  <option value="200">Infant Care (200₹ base fee)</option>
-                  <option value="150">Toddler Program(150₹ base fee)</option>
-                  <option value="100">Preschool Program(100₹ base fee)</option>
+                  <option value="0" data-name="None">Select program</option>
+                  <option value="200" data-name="Infant Care">Infant Care (200₹ base fee)</option>
+                  <option value="150" data-name="Toddler Program">Toddler Program(150₹ base fee)</option>
+                  <option value="100" data-name="Preschool Program">Preschool Program(100₹ base fee)</option>
                 </select>
               </label>
             </div>
