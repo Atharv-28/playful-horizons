@@ -74,6 +74,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const loader = document.getElementById("loader");
         loader.style.display = "block";
 
+        const childAgeInput = document.getElementById("child-age");
+        const childAge = parseInt(childAgeInput.value);
+
+        console.log("Child Age:", childAge)
+        // Validate age
+        if (childAge > 10 || childAge < 0 || isNaN(childAge)) {
+            alert("Only kids aged 0-10 can be enrolled!");
+            loader.style.display = "none";
+            return;
+        }
+
         const userData = {
             childName: document.querySelector("input[placeholder=\"Enter child's name\"]").value,
             childAge: document.querySelector("input[placeholder=\"Enter child's age\"]").value,
@@ -91,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
             endTime: document.getElementById("end-time").value,
             fee: `₹${totalFee}`,
         };
-        console.log("userData:", userData);
+        // console.log("userData:", userData);
         try {
             const response = await fetch("https://playful-horizons.onrender.com/api/send-pdf", {
                 method: "POST",
@@ -102,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                alert("PDF generated and sent to your email successfully!");
+                alert("PDF sent to your email successfully!");
             } else {
                 alert("Failed to send email. Please try again.");
             }
