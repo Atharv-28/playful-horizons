@@ -75,12 +75,21 @@
           style="
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          "
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            text-align: center;"
         >
-          <img src="../assets/load.gif" alt="Loading..." />
+          <img
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);"
+            src="../assets/load.gif"
+            alt="Loading..."
+          />
         </div>
         <div class="px-40 flex flex-1 justify-center py-5">
           <div
@@ -294,9 +303,15 @@
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1b130d] focus:outline-0 focus:ring-0 border border-[#e7d8cf] bg-[#fcf9f8] focus:border-[#e7d8cf] h-14 bg-[image:--select-button-svg] placeholder:text-[#9a684c] p-[15px] text-base font-normal leading-normal"
                 >
                   <option value="0" data-name="None">Select program</option>
-                  <option value="200" data-name="Infant Care">Infant Care (200₹ base fee)</option>
-                  <option value="150" data-name="Toddler Program">Toddler Program(150₹ base fee)</option>
-                  <option value="100" data-name="Preschool Program">Preschool Program(100₹ base fee)</option>
+                  <option value="200" data-name="Infant Care">
+                    Infant Care (200₹ base fee)
+                  </option>
+                  <option value="150" data-name="Toddler Program">
+                    Toddler Program(150₹ base fee)
+                  </option>
+                  <option value="100" data-name="Preschool Program">
+                    Preschool Program(100₹ base fee)
+                  </option>
                 </select>
               </label>
             </div>
