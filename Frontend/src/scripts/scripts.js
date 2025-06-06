@@ -5,11 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const oneDayCheckbox = document.getElementById("one-day");
     const wholeSemesterCheckbox = document.getElementById("whole-semester");
     const applicableFeeDisplay = document.getElementById("applicable-fee");
+    const popupBox = document.getElementById("popup-box");
+    const popupMessage = document.getElementById("popup-message");
+    const popupClose = document.getElementById("popup-close");
+    const loader = document.getElementById("loader");
 
     const hourlyRate = 50; // Example hourly rate
     const semesterDays = 50; // Example number of days in a semester
 
     let totalFee = 0;
+
     // Autofill start and end date/time for semester
     function autofillSemesterDetails() {
         const semesterStartDate = "2025-06-15"; // Example start date
@@ -68,19 +73,23 @@ document.addEventListener("DOMContentLoaded", () => {
     startTime.addEventListener("change", calculateFee);
     endTime.addEventListener("change", calculateFee);
 
+    // Close pop-up logic
+    popupClose.addEventListener("click", () => {
+        popupBox.style.display = "none";
+    });
+
     document.getElementById("submit-button").addEventListener("click", async (event) => {
         event.preventDefault();
 
-        const loader = document.getElementById("loader");
         loader.style.display = "block";
 
         const childAgeInput = document.getElementById("child-age");
         const childAge = parseInt(childAgeInput.value);
 
-        console.log("Child Age:", childAge)
         // Validate age
         if (childAge > 10 || childAge < 0 || isNaN(childAge)) {
-            alert("Only kids aged 0-10 can be enrolled!");
+            popupMessage.textContent = "Only kids aged 0-10 can be enrolled!";
+            popupBox.style.display = "block";
             loader.style.display = "none";
             return;
         }
@@ -102,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             endTime: document.getElementById("end-time").value,
             fee: `₹${totalFee}`,
         };
-        // console.log("userData:", userData);
+
         try {
             const response = await fetch("https://playful-horizons.onrender.com/api/send-pdf", {
                 method: "POST",
@@ -113,13 +122,16 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                alert("PDF sent to your email successfully!");
+                popupMessage.textContent = "PDF sent to your email successfully!";
+                popupBox.style.display = "block";
             } else {
-                alert("Failed to send email. Please try again.");
+                popupMessage.textContent = "Failed to send email. Please try again.";
+                popupBox.style.display = "block";
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("An error occurred. Please try again.");
+            popupMessage.textContent = "An error occurred. Please try again.";
+            popupBox.style.display = "block";
         } finally {
             loader.style.display = "none";
         }
